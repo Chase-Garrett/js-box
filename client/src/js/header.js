@@ -1,0 +1,6 @@
+const header = `
+/*
+*/                          
+`;
+
+export { header };
