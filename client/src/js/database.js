@@ -12,10 +12,21 @@ const initdb = async () =>
     }
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error("putDb not implemented");
+export const putDb = async (content) => {
+  const jsboxDb = await openDB("jsbox", 1);
+  const tx = jsboxDb.transaction("jsbox", "readwrite");
+  const store = tx.objectStore("jsbox");
+  const request = store.add({ jsbox: content });
+  const result = await request;
+};
 
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error("getDb not implemented");
+export const getDb = async () => {
+  const jsboxDb = await openDB("jsbox", 1);
+  const tx = jsboxDb.transaction("jsbox", "readonly");
+  const store = tx.objectStore("jsbox");
+  const request = store.getAll();
+  const result = await request;
+  return result;
+};
 
 initdb();
