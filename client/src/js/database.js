@@ -9,7 +9,7 @@ const initdb = async () =>
       }
       db.createObjectStore("jsbox", { keyPath: "id", autoIncrement: true });
       console.log("jsbox database created");
-    },
+    }
   });
 
 // TODO: Add logic to a method that accepts some content and adds it to the database

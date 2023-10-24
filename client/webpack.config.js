@@ -2,9 +2,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
-
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = () => {
   return {
@@ -17,10 +15,56 @@ module.exports = () => {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist")
     },
-    plugins: [],
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "./index.html",
+        title: "Webpack Plugin"
+      }),
+      new WebpackPwaManifest({
+        name: "JS Box",
+        short_name: "JSB",
+        description: "browser based text editor",
+        background_color: "#ffffff",
+        theme_color: "#ffffff",
+        start_url: "./",
+        publicPath: "./",
+        icons: [
+          {
+            src: path.resolve("src/images/logo.png"),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("images", "icons")
+          }
+        ]
+      }),
+      new InjectManifest({
+        swSrc: "./src-sw.js",
+        swDest: "sw.js"
+      }),
+      new MiniCssExtractPlugin()
+    ],
 
     module: {
-      rules: []
+      rules: [
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, "css-loader"]
+        },
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: "asset/resource"
+        },
+        {
+          test: /\.m?js$/,
+          exclude: /(node_modules|bower_components)/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ["@babel/preset-env"],
+              plugins: ["@babel/plugin-transform-runtime"]
+            }
+          }
+        }
+      ]
     }
   };
 };
