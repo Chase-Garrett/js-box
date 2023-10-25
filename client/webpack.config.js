@@ -25,8 +25,8 @@ module.exports = () => {
         name: "JS Box",
         short_name: "JSB",
         description: "browser based text editor",
-        background_color: "#ffffff",
-        theme_color: "#ffffff",
+        background_color: "#7e1aca",
+        theme_color: "#7e1aca",
         start_url: "./",
         publicPath: "./",
         icons: [
@@ -60,10 +60,7 @@ module.exports = () => {
             loader: "babel-loader",
             options: {
               presets: ["@babel/preset-env"],
-              plugins: [
-                "@babel/plugin-proposal-object-rest-spread",
-                "@babel/plugin-transform-runtime"
-              ]
+              plugins: ["@babel/plugin-transform-runtime"]
             }
           }
         }
