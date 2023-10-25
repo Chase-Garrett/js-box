@@ -16,7 +16,7 @@ export const putDb = async (content) => {
   const jsboxDb = await openDB("jsbox", 1);
   const tx = jsboxDb.transaction("jsbox", "readwrite");
   const store = tx.objectStore("jsbox");
-  const request = store.add({ jsbox: content });
+  const request = store.put({ jsbox: content });
   const result = await request;
 };
 
