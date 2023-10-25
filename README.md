@@ -28,6 +28,8 @@ This application can be installed by clicking the `Install!` button in the top l
 
 ## Usage
 
+This application is currently deployed at:
+
 In order to use this application you can click in the window and simply start typing. The JavaScript syntax highlighting will occur automatically.
 
 ![screenshot showing javascript syntax highlighting](./jsbox.png)
