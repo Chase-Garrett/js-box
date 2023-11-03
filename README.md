@@ -28,7 +28,7 @@ This application can be installed by clicking the `Install!` button in the top l
 
 ## Usage
 
-This application is currently deployed at: https://tinyurl.com/2p9xawvp
+This application is not currently deployed.
 
 In order to use this application you can click in the window and simply start typing. The JavaScript syntax highlighting will occur automatically.
 
